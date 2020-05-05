@@ -1,0 +1,67 @@
+﻿@using PagedList;
+
+@using PagedList.Mvc;
+@using System.Web.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+
+@*<body>
+        <table>
+            @for (var i = 1; i <= 10; i++)
+            {
+                <tr>
+                    @for (var j = i; j <= 100;)
+                    {
+                        if (j % 15 == 0)
+                        {
+                            <td> Fiz Buzz &nbsp;</td>
+                        }
+                        else
+                        {
+                            if (j % 5 == 0)
+                            {
+                                <td> Buzz &nbsp;</td>
+                            }
+                            else
+                            {
+                                if (j % 3 == 0)
+                                {
+                                    <td> Fiz &nbsp;</td>
+                                }
+                                else
+                                {
+                                    <td>@j  &nbsp;</td>
+                                }
+                            }
+                        }
+
+
+
+                        j = j + 10;
+                    }
+                </tr>
+            }
+        </table>
+    </body>*@
+
+@model IPagedList<string>
+
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item &nbsp;</td>
+            </tr>
+        }
+    </table>
+    @*Your existing view*@
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @*@Html.PagedListPager(Model, page => Url.Action("Index",   new { page}))*@
+    @Html.PagedListPager(Model,page => Url.Action("Index", new { page }))
